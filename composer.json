@@ -1,0 +1,20 @@
+{
+    "name": "chenzhikang/shenghuosdk",
+    "description": "圣火sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "czk",
+            "email": "810416581@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "minimum-stability": "dev",
+    "autoload":{
+        "psr-4":{
+            "Shenghuo\\":"shenghuo-sdk/"
+        }
+    }
+}
