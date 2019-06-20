@@ -11,7 +11,7 @@ require_once './vendor/shenghuo/shenghuosdk/shenghuo-sdk/ShSdkCommon.php';
 class ShSdkBase
 {
 	public $appId,$appSecret,$privateKey,$publicKey,$sign;
-	public function __construct($config,$data){
+	public function __construct($config){
 		if (empty($config)) {
 			return sdkReturnArr(FAIL,[],"获取项目app配置失败");
 		}
@@ -19,8 +19,6 @@ class ShSdkBase
 		$this->appSecret  = $config['app_secret'];
 		$this->privateKey = $config['private_key'];
 		$this->publicKey  = $config['public_key'];
-		$this->values  = $data;
-		$this->values['app_id']  = $this->appId;
 	}
 
 	/**
@@ -62,12 +60,13 @@ class ShSdkBase
      */
     public function MakeSign($data)
     {
-    	
+    	$this->values = $data;
         //签名步骤一：按字典序排序参数
         ksort($this->values);
         $string = $this->ToUrlParams();
         //签名步骤二：在string后加入KEY
         $string = $string . "&key=".$this->appSecret;
+    	// p($string);
         //签名步骤三：MD5加密
         $string = md5($string);
         //签名步骤四：所有字符转为大写

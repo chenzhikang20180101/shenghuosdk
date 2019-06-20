@@ -15,7 +15,7 @@ function sdkAjaxApiReturn($code=SUCCESS,$data=[],$msg='',$time=""){
  * curl获取请求文本内容
  * @return array
  */
-function crm_https_request($url, $method ='GET', $data = array(),$timeout=30) {
+function sdk_https_request($url, $method ='GET', $data = array(),$timeout=30) {
     if ($method == 'POST') {
         //使用crul模拟
         $ch = curl_init();

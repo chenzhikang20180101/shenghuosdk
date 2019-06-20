@@ -8,16 +8,16 @@ namespace Shenghuo\request;
 class ShSdkApi1 extends ShSdkBase
 {
 	
-	public function __construct($config,$data)
+	public function __construct($config)
 	{
-		parent::__construct($config,$data);
+		parent::__construct($config);
 	}
 
 	/**
 	 * 注册
 	 */
-	public function userRegister(){
-		$data = $this->values;
+	public function sdkUserRegister($data){
+		$data['app_id'] = $this->appId;
 		// 密码加密
 		$encryPsd = $this->encryption($data['password']);
 		if ($encryPsd['code']==FAIL) {
@@ -31,19 +31,19 @@ class ShSdkApi1 extends ShSdkBase
 		}
 		$data['payword'] = $encryPyd['data'];
 		// 生成签名串
-		$data['sign'] = $this->MakeSign();
-		p($data);
+		$data['sign'] = $this->MakeSign($data);
 		// 请求会员管理系统接口
-		$url = API_HOST.REGISTER;
-		$res = crm_https_request($url, 'POST', $data);
+		$url = API_HOST.SDK_REGISTER;
+		$res = sdk_https_request($url, 'POST', $data);
+		$res = json_decode($res,true);
 		return $res;
 	}
 
 	/**
 	 * 用户登录
 	 */
-	public function userLogin(){
-		$data = $this->values;
+	public function sdkUserLogin($data){
+		$data['app_id'] = $this->appId;
 		// 密码加密
 		$encryPsd = $this->encryption($data['password']);
 		if ($encryPsd['code']==FAIL) {
@@ -51,11 +51,11 @@ class ShSdkApi1 extends ShSdkBase
 		}
 		$data['password'] = $encryPsd['data'];
 		// 生成签名串
-		$data['sign'] = $this->MakeSign();
-		p($data);
+		$data['sign'] = $this->MakeSign($data);
 		// 请求会员管理系统接口
-		$url = API_HOST.LOGIN;
-		$res = crm_https_request($url, 'POST', $data);
+		$url = API_HOST.SDK_LOGIN;
+		$res = sdk_https_request($url, 'POST', $data);
+		$res = json_decode($res,true);
 		return $res;
 
 	}
@@ -63,14 +63,13 @@ class ShSdkApi1 extends ShSdkBase
 	/**
 	 * 通用接口
 	 */
-	public function commonInterface($interfaceName){
-		$data = $this->values;
+	public function skdCommonInterface($data,$interfaceName){
+		$data['app_id'] = $this->appId;
 		// 生成签名串
-		$data['sign'] = $this->MakeSign();
-		p($data);
+		$data['sign']   = $this->MakeSign($data);
 		// 请求会员管理系统接口
 		$url = API_HOST.$interfaceName;
-		$res = crm_https_request($url, 'POST', $data);
+		$res = sdk_https_request($url, 'POST', $data);
 		return $res;
 	}
 
