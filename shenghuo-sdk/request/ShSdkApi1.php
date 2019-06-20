@@ -35,7 +35,7 @@ class ShSdkApi1 extends ShSdkBase
 		p($data);
 		// 请求会员管理系统接口
 		$url = API_HOST.REGISTER;
-		$res = https_request($url, 'POST', $data);
+		$res = crm_https_request($url, 'POST', $data);
 		return $res;
 	}
 
@@ -55,7 +55,7 @@ class ShSdkApi1 extends ShSdkBase
 		p($data);
 		// 请求会员管理系统接口
 		$url = API_HOST.LOGIN;
-		$res = https_request($url, 'POST', $data);
+		$res = crm_https_request($url, 'POST', $data);
 		return $res;
 
 	}
@@ -70,7 +70,7 @@ class ShSdkApi1 extends ShSdkBase
 		p($data);
 		// 请求会员管理系统接口
 		$url = API_HOST.$interfaceName;
-		$res = https_request($url, 'POST', $data);
+		$res = crm_https_request($url, 'POST', $data);
 		return $res;
 	}
 

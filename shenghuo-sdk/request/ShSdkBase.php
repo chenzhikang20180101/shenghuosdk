@@ -4,9 +4,9 @@ namespace Shenghuo\request;
  * author:czk
  * time:2019-06-18
  */
-require_once './shenghuo-sdk/ShSdkInterFaceName.php';
-require_once './shenghuo-sdk/ShSdkConfig.php';
-require_once './shenghuo-sdk/ShSdkCommon.php';
+require_once './vendor/shenghuo/shenghuosdk/shenghuo-sdk/ShSdkInterFaceName.php';
+require_once './vendor/shenghuo/shenghuosdk/shenghuo-sdk/ShSdkConfig.php';
+require_once './vendor/shenghuo/shenghuosdk/shenghuo-sdk/ShSdkCommon.php';
 
 class ShSdkBase
 {
